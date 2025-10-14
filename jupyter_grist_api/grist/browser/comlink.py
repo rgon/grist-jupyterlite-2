@@ -1,11 +1,17 @@
-import js  # noqa
-import pyodide_js  # noqa
-from pyodide.ffi import to_js, create_proxy  # noqa
+try:
+    import js  # noqa
+    import pyodide_js  # noqa
+    from pyodide.ffi import to_js, create_proxy  # noqa
+
+    js.importScripts("https://unpkg.com/comlink@4.4.1/dist/umd/comlink.js")
+    pyodide_js.registerComlink(js.Comlink)
+except ImportError:
+    js = None
+    pyodide_js = None
+    to_js = None
+    create_proxy = None
 
 from .utils import maybe_await
-
-js.importScripts("https://unpkg.com/comlink@4.4.1/dist/umd/comlink.js")
-pyodide_js.registerComlink(js.Comlink)
 
 
 class ComlinkProxy:

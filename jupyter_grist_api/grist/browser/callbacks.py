@@ -9,18 +9,27 @@ from functools import partial
 import IPython.core.display_functions
 import IPython.display
 from IPython import get_ipython
-import js  # noqa
-import pyodide_js  # noqa
-from pyodide.ffi import to_js, create_proxy  # noqa
+try:
+    import js  # noqa
+    import pyodide_js  # noqa
+    from pyodide.ffi import to_js, create_proxy  # noqa
+except ImportError:
+    js = None
+    pyodide_js = None
+    to_js = None
+    create_proxy = None
 
 from .utils import maybe_await
 
 original_print = print
 original_display = IPython.display.display
 
-get_ipython().display_formatter.formatters["text/plain"].for_type(
-    str, lambda string, pp, cycle: pp.text(string)
-)
+try:
+    get_ipython().display_formatter.formatters["text/plain"].for_type(
+        str, lambda string, pp, cycle: pp.text(string)
+    )
+except Exception:
+    pass
 
 lock = asyncio.Lock()
 

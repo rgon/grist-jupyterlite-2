@@ -1,4 +1,7 @@
-import js  # noqa
+try:
+    import js  # noqa
+except ImportError:
+    js = None
 
 from .callbacks import check_registering_cell, add_to_callback_registry
 from .comlink import ComlinkProxy
@@ -8,7 +11,8 @@ from ..objtypes import decode_bulk_values, decode_record, decode_object
 
 class Grist:
     def __init__(self):
-        self.raw = ComlinkProxy(js.Comlink.wrap(js).grist)
+        if js:
+            self.raw = ComlinkProxy(js.Comlink.wrap(js).grist)
 
     def on_records(self, callback):
         check_registering_cell()
