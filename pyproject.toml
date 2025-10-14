@@ -27,6 +27,7 @@ dependencies = [
 [tool.uv.workspace]
 members = [
     "extension",
+    "jupyter_grist_api",
 ]
 
 [tool.uv.sources]

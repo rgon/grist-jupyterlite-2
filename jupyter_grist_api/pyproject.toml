@@ -1,0 +1,19 @@
+[project]
+name = "grist"
+version = "0.1.1"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"grist" = ["*.data"]
+
+[tool.uv_build]
+include = [
+    "grist/**",
+    "tzdata.data"
+]
