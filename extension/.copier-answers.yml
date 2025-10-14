@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v4.4.0
+_src_path: https://github.com/jupyterlab/extension-template
+author_email: foss@rgon.es
+author_name: rgon
+has_binder: false
+has_settings: false
+kind: frontend
+labextension_name: grist-jupyterlite-2
+project_short_description: Jupiterlite within grist
+python_name: grist_jupyterlite_2
+repository: https://github.com/rgon/grist-jupyterlite-2
+test: true
+
