@@ -1,0 +1,27 @@
+[project]
+name = "grist-jupyterlite-2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bqplot>=0.12.45",
+    "ipycanvas>=0.9.1",
+    "ipyevents>=2.0.1",
+    "ipyleaflet>=0.20.0",
+    "ipympl>=0.8.2",
+    "ipywidgets>=8.1.3,<9",
+    "jupyterlab~=4.4.5",
+    "jupyterlab-fasta>=3.3.0,<4",
+    "jupyterlab-geojson>=3.4.0,<4",
+    "jupyterlab-language-pack-fr-fr>=4.4.post2",
+    "jupyterlab-language-pack-zh-cn>=4.4.post2",
+    "jupyterlab-miami-nights>=0.4.2",
+    "jupyterlab-night>=0.5.2",
+    "jupyterlite-core==0.6.4",
+    "jupyterlite-javascript-kernel==0.3.0",
+    "jupyterlite-p5-kernel==0.1.0",
+    "jupyterlite-pyodide-kernel==0.6.1",
+    "notebook~=7.4.5",
+    "plotly>=6,<7",
+]
