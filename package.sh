@@ -9,6 +9,7 @@ if [[ $clean == "clean" ]]; then
   echo "Cleaning previous builds..."
   rm -rf dist || true
   rm -rf jupyter_grist_api/grist.egg-info || true
+  exit 0
 fi
 cd jupyter_grist_api
 

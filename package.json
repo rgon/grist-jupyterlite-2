@@ -1,0 +1,33 @@
+{
+  "name": "@rgon/grist-jupyterlite",
+  "description": "Widget for a JupyterLite Notebook",
+  "homePage": "https://github.com/rgon/grist-jupyterlite",
+  "version": "0.1.0",
+  "grist": [
+    {
+      "name": "JupyterLite notebook",
+      "url": "https://rgon.github.io/grist-jupyterlite/jupyterlite/lab/index.html",
+      "widgetId": "@rgon/grist-jupyterlite",
+      "published": false,
+      "accessLevel": "read table",
+      "description": "Run custom Python code in JupyterLite, a version of JupyterLab running entirely in the browser.",
+      "authors": [
+        {
+          "name": "Gonzalo Ruiz",
+          "url": "https://github.com/rgon"
+        }
+      ],
+      "isGristLabsMaintained": false
+    }
+  ],
+  "dependencies": {
+    "gh-pages": "^6.1.1"
+  },
+  "scripts": {
+    "clean": "rm -rf _output build dist .jupyterlite.doit.db node_modules/.cache",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -m \"Deploy `git rev-parse --verify --short HEAD`\"",
+    "start": "./dev.sh",
+    "build": "npm run clean && ./package.sh && jupyter lite build --output-dir build && cp package.json build/package.json"
+  }
+}

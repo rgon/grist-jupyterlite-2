@@ -6,6 +6,7 @@ if [[ $1 == "clean" ]]; then
   rm -rf .jupyterlite.doit.db || true
   rm -rf _output || true
   rm -rf files/package.tar.gz || true
+  ./package.sh clean
   exit 0
 fi
 set -eux
@@ -28,6 +29,13 @@ eval $PACKAGE_MANAGER_PREFIX jupyter labextension develop ./extension --overwrit
 echo "Packaging grist python source code..."
 ./package.sh
 
+if [[ $1 == "build" ]]; then
 eval $PACKAGE_MANAGER_PREFIX jupyter lite build
-
+mv _output build
+cp package.json build/
+cp README.md build/
+cp files/* build/files/
+else
+eval $PACKAGE_MANAGER_PREFIX jupyter lite build
 eval $PACKAGE_MANAGER_PREFIX jupyter lite serve
+fi
