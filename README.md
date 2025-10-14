@@ -1,37 +1,28 @@
-# JupyterLite Demo
+# JupyterLite Notebook Grist Custom Widget
 
-[![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://jupyterlite.github.io/demo)
+> [!TIP]
+> See [USAGE.md](./USAGE.md) for instructions on how to use this widget in Grist. This README is for developers.
 
-JupyterLite deployed as a static site to GitHub Pages, for demo purposes.
+This repo is a custom deployment of JupyterLite generated from https://github.com/jupyterlite/demo.
 
-## ✨ Try it in your browser ✨
+## Development
 
-➡️ **https://jupyterlite.github.io/demo**
+1. Ensure `uv` is installed
+2. Run `./dev.sh` to start a local JupyterLite server.
 
-![github-pages](https://user-images.githubusercontent.com/591645/120649478-18258400-c47d-11eb-80e5-185e52ff2702.gif)
+## Files
 
-## Requirements
+- `extension/` contains the JupyterLab extension that connects the Grist and JupyterLab APIs. See the [README there](./extension/README.md) for more details.
+- `grist/` contains most of the Python code that runs inside the JupyterLite Pyodide and that users can call.
+- `package.sh` packages the files under `grist` and puts them in `files/package.tar.gz`. JupyterLite picks up the contents of `files` when building, so the package can be downloaded from http://localhost:8000/files/package.tar.gz. `package.sh` is run by both `dev.sh` and the GitHub Action.
+- `extension/src/initKernelPy.ts` contains the 'bootstrapping' Python code that the extension runs in the kernel on startup. It downloads the package, extracts it, and imports it.
+- `dev.sh` cleans out old state, does some minimal building for development, and starts a local JupyterLite server.
+- `jupyter-lite.json` contains configuration for the JupyterLite deployment.
 
-JupyterLite is being tested against modern web browsers:
+## Dependencies
 
-- Firefox 90+
-- Chromium 89+
+The widget loads many resources at runtime:
 
-## Deploy your JupyterLite website on GitHub Pages
-
-Check out the guide on the JupyterLite documentation: https://jupyterlite.readthedocs.io/en/latest/quickstart/deploy.html
-
-## Further Information and Updates
-
-For more info, keep an eye on the JupyterLite documentation:
-
-- How-to Guides: https://jupyterlite.readthedocs.io/en/latest/howto/index.html
-- Reference: https://jupyterlite.readthedocs.io/en/latest/reference/index.html
-
-This template provides the Pyodide kernel (`jupyterlite-pyodide-kernel`), the JavaScript kernel (`jupyterlite-javascript-kernel`), and the p5 kernel (`jupyterlite-p5-kernel`), along with other
-optional utilities and extensions to make the JupyterLite experience more enjoyable. See the
-[`requirements.txt` file](requirements.txt) for a list of all the dependencies provided.
-
-For a template based on the Xeus kernel, see the [`jupyterlite/xeus-python-demo` repository](https://github.com/jupyterlite/xeus-python-demo)
-
-
+- The Grist plugin API (used by all custom widgets) from https://docs.getgrist.com/grist-plugin-api.js
+- An optimised, pre-compiled Pyodide distribution from URLs starting with https://cdn.jsdelivr.net/pyodide/v0.24.0/pyc/
+- Python packages (whether required by the widget itself or imported by the user's code) from https://pypi.org/ (for metadata) and https://files.pythonhosted.org/ (for wheel files containing the actual packages).
