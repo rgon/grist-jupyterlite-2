@@ -4,7 +4,7 @@
         "appName": "Grist JupyterLite",
         "litePluginSettings": {
             "@jupyterlite/pyodide-kernel-extension:kernel": {
-                "pyodideUrl": "https://cdn.jsdelivr.net/pyodide/v0.26.0/pyc/pyodide.js"
+                "pyodideUrl": "https://cdn.jsdelivr.net/pyodide/v0.27.0/pyc/pyodide.js"
             }
         },
         "settingsOverrides": {
